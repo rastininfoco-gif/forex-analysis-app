@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101827">
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/static/icons/icon-192.png" type="image/png">
+<title>تحلیل‌گر فارکس | گن، آسترولوژی، اخبار و اندیکاتورها</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="logo">FX</span>
+    <div>
+      <h1>تحلیل‌گر فارکس</h1>
+      <p>پیش‌بینی چند‌موتوره: گن · آسترولوژی · اخبار · MACD/RSI</p>
+    </div>
+  </div>
+  <div class="picker">
+    <label for="symbol">انتخاب نماد:</label>
+    <select id="symbol"></select>
+  </div>
+</header>
+
+<main>
+  <div id="status" class="status">نمادی را انتخاب کنید تا تحلیل بارگذاری شود…</div>
+
+  <section id="summary" class="summary hidden">
+    <div class="verdict-card" id="verdictCard">
+      <div class="v-label">پیش‌بینی نهایی (ترکیب ۴ موتور)</div>
+      <div class="v-main" id="finalVerdict">—</div>
+      <div class="prob-wrap">
+        <div class="prob-bar"><div class="prob-fill" id="probFill"></div><div class="prob-mid"></div></div>
+        <div class="prob-labels"><span id="probDown">—</span><span>احتمال</span><span id="probUp">—</span></div>
+      </div>
+    </div>
+    <div class="mini-cards">
+      <div class="mini"><span class="m-label">قیمت لحظه‌ای</span><span class="m-val" id="priceNow">—</span><span class="m-sub" id="chgNow">—</span></div>
+      <div class="mini"><span class="m-label">سقف ۵۲ هفته</span><span class="m-val" id="hi52">—</span></div>
+      <div class="mini"><span class="m-label">کف ۵۲ هفته</span><span class="m-val" id="lo52">—</span></div>
+    </div>
+  </section>
+
+  <section id="engines" class="engines hidden"></section>
+
+  <section class="charts hidden" id="charts">
+    <h2>نمودارها</h2>
+    <div class="chart-box tv-box">
+      <h3>نمودار زنده‌ی TradingView</h3>
+      <div class="ch tv"><div id="tvwidget"></div></div>
+    </div>
+    <div class="chart-box"><h3>روند قیمت (۶ ماه)</h3><div class="ch"><canvas id="cPrice"></canvas></div></div>
+    <div class="chart-box"><h3>MACD</h3><div class="ch"><canvas id="cMacd"></canvas></div></div>
+    <div class="chart-box"><h3>RSI (۱۴)</h3><div class="ch"><canvas id="cRsi"></canvas></div></div>
+  </section>
+
+  <section id="news" class="news hidden">
+    <h2>📰 اخبار اقتصادی و سیاسی جهان</h2>
+    <p class="news-src" id="newsSrc"></p>
+    <ul id="newsList"></ul>
+  </section>
+
+  <p class="disclaimer">⚠️ این تحلیل‌ها صرفاً جنبه آموزشی و سرگرمی دارند (به‌ویژه موتور آسترولوژی) و توصیه سرمایه‌گذاری نیستند. مدیریت ریسک را جدی بگیرید.</p>
+</main>
+
+<script src="/static/chart.umd.js"></script>
+<script src="/static/app.js"></script>
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => navigator.serviceWorker.register("/sw.js").catch(console.error));
+}
+</script>
+</body>
+</html>
